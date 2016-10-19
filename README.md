@@ -1,1 +1,14 @@
-# ttH_Htautau_MEM_Analysis
+### Description
+
+This package provides an implementation of the Matrix Element Method for the ttH H->tautau analysis.
+
+
+### Instructions for 8_0_X
+
+```
+cmsrel CMSSW_8_0_12
+cd CMSSW_8_0_12/src
+cmsenv
+git clone https://github.com/tstreble/ttH_Htautau_MEM_Analysis
+scram b -j 4
+```
