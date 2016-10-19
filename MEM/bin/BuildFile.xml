@@ -1,0 +1,3 @@
+<bin   name="test" file="test.cpp">
+  <use   name="ttH_Htautau_MEM_Analysis/MEM"/>
+</bin>

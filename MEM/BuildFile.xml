@@ -1,0 +1,7 @@
+<use   name="root"/>
+<use   name="python"/>
+<use name="ttH_Htautau_MEM_Analysis/MEMAlgo"/>
+
+<export>
+  <lib   name="1"/>
+</export>

@@ -1,0 +1,14 @@
+<use   name="root"/>
+<use   name="python"/>
+<use   name="lhapdf"/>
+<use name="FWCore/Framework"/>
+<use name="FWCore/PluginManager"/>
+<use name="FWCore/ParameterSet"/>
+<use name="DataFormats/Math"/>
+
+<Flags CXXFLAGS=" -g -I /opt/exp_soft/vo.gridcl.fr/software/OpenMPI/slc6_amd64_gcc491/openmpi/1.6.5/include -I /opt/exp_soft/vo.gridcl.fr/software/OpenCL/Intel-SDK/include -pthread " />
+<Flags LDFLAGS=" -g -v -I /opt/exp_soft/vo.gridcl.fr/software/OpenMPI/slc6_amd64_gcc491/openmpi/1.6.5/include -L/opt/exp_soft/vo.gridcl.fr/software/OpenMPI/slc6_amd64_gcc491/openmpi/1.6.5/lib -pthread " /> 
+
+<export>
+  <lib   name="1"/>
+</export>
