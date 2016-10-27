@@ -43,8 +43,8 @@ int main (int argc, char** argv)
   for(int event=0;event<runConfig->maxNbrOfEventsToRead_;event++){
     std::cout<<std::endl;
     std::cout<<"======"<<std::endl;
-    std::cout<<"nbrOfPermut_ : "<<eventList[0].nbrOfPermut_<<std::endl;
-    for(int perm=0; perm<eventList[0].nbrOfPermut_; perm++){
+    std::cout<<"nbrOfPermut_ : "<<eventList[event].nbrOfPermut_<<std::endl;
+    for(int perm=0; perm<eventList[event].nbrOfPermut_; perm++){
       std::cout<<"perm="<<perm<<std::endl;
       std::cout<<"w(ttH)="<<eventList[event].integralttH_[perm]<<std::endl;
       std::cout<<"w(ttZ,Z->tautau)="<<eventList[event].integralttZ_[perm]<<std::endl;
