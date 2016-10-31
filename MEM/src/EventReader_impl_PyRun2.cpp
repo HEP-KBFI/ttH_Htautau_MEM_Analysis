@@ -40,13 +40,6 @@ EventReader<PyRun2EventData_t>::EventReader( const vector<string> &fileNames, lo
   _recoPFJet_untag_pz.clear();
   _recoPFJet_untag_e.clear();
   
-  _n_pair_Wtag_recoPFJet_untag = 0;
-  _recoPFJet_untag_Wtag_px.clear();
-  _recoPFJet_untag_Wtag_py.clear();
-  _recoPFJet_untag_Wtag_pz.clear();
-  _recoPFJet_untag_Wtag_e.clear();
-
-  
 
   if ( fileNames.size() != 1 ) {
     if ( fileNames.size() == 0 ) {
@@ -102,12 +95,7 @@ EventReader<PyRun2EventData_t>::EventReader( const vector<string> &fileNames, lo
 	  evRead_[i]._recoPFJet_untag_py  = getPyDictVectFloat( pItem, "_recoPFJet_untag_py");
 	  evRead_[i]._recoPFJet_untag_pz  = getPyDictVectFloat( pItem, "_recoPFJet_untag_pz");
 	  evRead_[i]._recoPFJet_untag_e   = getPyDictVectFloat( pItem, "_recoPFJet_untag_e");
-	  //
-	  evRead_[i]._n_pair_Wtag_recoPFJet_untag   = getPyDictInt( pItem, "_n_pair_Wtag_recoPFJet_untag");
-	  evRead_[i]._recoPFJet_untag_Wtag_px  = getPyDictVectFloat( pItem, "_recoPFJet_untag_Wtag_px");
-	  evRead_[i]._recoPFJet_untag_Wtag_py  = getPyDictVectFloat( pItem, "_recoPFJet_untag_Wtag_py");
-	  evRead_[i]._recoPFJet_untag_Wtag_pz  = getPyDictVectFloat( pItem, "_recoPFJet_untag_Wtag_pz");
-	  evRead_[i]._recoPFJet_untag_Wtag_e   = getPyDictVectFloat( pItem, "_recoPFJet_untag_Wtag_e");
+
         }
       }
     }
@@ -149,12 +137,6 @@ void EventReader<PyRun2EventData_t>::copyIn(PyRun2EventData_t &eventData) {
   eventData._recoPFJet_untag_py = _recoPFJet_untag_py;
   eventData._recoPFJet_untag_pz = _recoPFJet_untag_pz;
   eventData._recoPFJet_untag_e  = _recoPFJet_untag_e;
-  //
-  eventData._n_pair_Wtag_recoPFJet_untag = _n_pair_Wtag_recoPFJet_untag;
-  eventData._recoPFJet_untag_Wtag_px = _recoPFJet_untag_Wtag_px;
-  eventData._recoPFJet_untag_Wtag_py = _recoPFJet_untag_Wtag_py;
-  eventData._recoPFJet_untag_Wtag_pz = _recoPFJet_untag_Wtag_pz;
-  eventData._recoPFJet_untag_Wtag_e  = _recoPFJet_untag_Wtag_e;
 
 }
 
@@ -181,9 +163,6 @@ void getEntry(EventReader<PyRun2EventData_t> *ev, uint64_t currentEvent_) {
   //
   PyAssign(_n_recoPFJet_untag);
   PyAssign(_recoPFJet_untag_px); PyAssign(_recoPFJet_untag_py); PyAssign(_recoPFJet_untag_pz); PyAssign(_recoPFJet_untag_e);
-  //
-  PyAssign(_n_pair_Wtag_recoPFJet_untag);
-  PyAssign(_recoPFJet_untag_Wtag_px); PyAssign(_recoPFJet_untag_Wtag_py); PyAssign(_recoPFJet_untag_Wtag_pz); PyAssign(_recoPFJet_untag_Wtag_e);
 
 }
 
@@ -234,22 +213,31 @@ bool EventReader<PyRun2EventData_t>::readEvent(PyRun2EventData_t &eventData,
     Jets_4P.push_back(Jet_4P);
   }
   
+  Jet1_4P = Jets_4P[0];
+  Jet2_4P = Jets_4P[1];
+  double mW = 80.4;
+  double delta_Mjj = fabs( (Jet1_4P+Jet2_4P).M() - mW );
 
-  if( _n_recoPFJet_untag>=2 && _n_pair_Wtag_recoPFJet_untag>0){
-    integration_type = 0;
-    
-    //Two untagged jets with mass closest to mW
-    Jet1_4P.SetPxPyPzE( (_recoPFJet_untag_Wtag_px)[0], (_recoPFJet_untag_Wtag_py)[0], (_recoPFJet_untag_Wtag_pz)[0], (_recoPFJet_untag_Wtag_e)[0] );
-    Jet2_4P.SetPxPyPzE( (_recoPFJet_untag_Wtag_px)[1], (_recoPFJet_untag_Wtag_py)[1], (_recoPFJet_untag_Wtag_pz)[1], (_recoPFJet_untag_Wtag_e)[1] );
+  for(unsigned int i=0;i<Jets_4P.size()-1;i++){
+    for(unsigned int j=i+1;j<Jets_4P.size();j++){
+      
+      if( fabs( (Jets_4P[i]+Jets_4P[j]).M() - mW ) < delta_Mjj ){
+	Jet1_4P = Jets_4P[i];
+	Jet2_4P = Jets_4P[j];
+	delta_Mjj = fabs( (Jet1_4P+Jet2_4P).M() - mW );
+      }
+  
+    }
   }
 
-  else if( _n_recoPFJet_untag>=1 && _n_pair_Wtag_recoPFJet_untag==0 ){
+  if( (Jet1_4P+Jet2_4P).M()>60 && (Jet1_4P+Jet2_4P).M()<100 )
+    integration_type = 0;
+
+  else{
     integration_type = 1;
     Jet1_4P.SetPxPyPzE( 0., 0., 0., 0. );
-    Jet2_4P.SetPxPyPzE( 0., 0., 0., 0. );
-    
-  }
-  
+    Jet2_4P.SetPxPyPzE( 0., 0., 0., 0. );    
+  }  
 
   cout<<"Event #"<<currentEvent_<<" selected"<<endl;
 

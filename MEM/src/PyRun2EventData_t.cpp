@@ -31,11 +31,5 @@ PyRun2EventData_t::PyRun2EventData_t( const PyRun2EventData_t *evData) {
   _recoPFJet_untag_py = evData->_recoPFJet_untag_py;
   _recoPFJet_untag_pz = evData->_recoPFJet_untag_pz;
   _recoPFJet_untag_e = evData->_recoPFJet_untag_e;
-  
-  _n_pair_Wtag_recoPFJet_untag = evData->_n_pair_Wtag_recoPFJet_untag;
-  _recoPFJet_untag_Wtag_px = evData->_recoPFJet_untag_Wtag_px;
-  _recoPFJet_untag_Wtag_py = evData->_recoPFJet_untag_Wtag_py;
-  _recoPFJet_untag_Wtag_pz = evData->_recoPFJet_untag_Wtag_pz;
-  _recoPFJet_untag_Wtag_e = evData->_recoPFJet_untag_Wtag_e;
 
 }

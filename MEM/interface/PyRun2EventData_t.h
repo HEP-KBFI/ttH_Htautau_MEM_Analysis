@@ -46,14 +46,6 @@ typedef struct {
   vector<float> _recoPFJet_untag_pz;
   vector<float> _recoPFJet_untag_e;
 
-  // Wtag untagged jets: 2 jets with mass closest to MW
-  int _n_pair_Wtag_recoPFJet_untag; //Number of pair of jets with MW between 60 and 100 GeV
-  vector<float> _recoPFJet_untag_Wtag_px;
-  vector<float> _recoPFJet_untag_Wtag_py;
-  vector<float> _recoPFJet_untag_Wtag_pz;
-  vector<float> _recoPFJet_untag_Wtag_e;
-  
-
 
 } EventRead_t;
 
@@ -95,11 +87,6 @@ class PyRun2EventData_t {
   vector<float> _recoPFJet_untag_pz;
   vector<float> _recoPFJet_untag_e;
 
-  int _n_pair_Wtag_recoPFJet_untag;
-  vector<float> _recoPFJet_untag_Wtag_px;
-  vector<float> _recoPFJet_untag_Wtag_py;
-  vector<float> _recoPFJet_untag_Wtag_pz;
-  vector<float> _recoPFJet_untag_Wtag_e;
 
   // Python fields
   PyObject *pModule_;
