@@ -1905,7 +1905,6 @@ void MGIntegration::copyBoundaries( IntegrationMsg_t *data ) {
 
 double MGIntegration::evalttH(const double* x ) {
 
-
   double mb=Physics::mb;
 
  

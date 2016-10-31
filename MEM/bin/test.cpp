@@ -53,6 +53,13 @@ int main (int argc, char** argv)
       std::cout<<"w(tt,fake from ttau)="<<eventList[event].integralttbar_DL_fakelep_ttau_[perm]<<std::endl;
 
     }
+
+    cout<<"Sum over perm"<<endl;
+    std::cout<<"w(ttH)="<<eventList[event].weight_ttH_<<std::endl;
+    std::cout<<"w(ttZ,Z->tautau)="<<eventList[event].weight_ttZ_<<std::endl;
+    std::cout<<"w(ttZ,Z->ll)="<<eventList[event].weight_ttZ_Zll_<<std::endl;
+    std::cout<<"w(tt,fake)="<<eventList[event].weight_ttbar_DL_fakelep_<<std::endl;
+
   }
 
   return 0 ;
