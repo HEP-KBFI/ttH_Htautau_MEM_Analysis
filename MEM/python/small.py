@@ -61,8 +61,8 @@ ResultLevel      = 1
 IntegrationLevel = 2 
 IntegrandLevel   = 3 
 # Seclect verbose mode
-verbose      = IntegrandLevel
-logFileName = MEM_BASE + "/python/small.log"
+verbose      = NoVerbose
+#logFileName = MEM_BASE + "/python/small.log"
 
 
 
@@ -90,22 +90,22 @@ force_missing_jet_integration_ifnoperm = True
 
 
 
-#nbrOfPoints_ttH = 10000
-nbrOfPoints_ttH = 15
-#nbrOfPoints_ttZ = 10000
-nbrOfPoints_ttZ = 10
-#nbrOfPoints_ttbar_DL = 10000
-nbrOfPoints_ttbar_DL = 10
-#nbrOfPoints_ttZ_Zll = 5000
-nbrOfPoints_ttZ_Zll = 5
+nbrOfPoints_ttH = 10000
+#nbrOfPoints_ttH = 15
+nbrOfPoints_ttZ = 10000
+#nbrOfPoints_ttZ = 10
+nbrOfPoints_ttbar_DL = 10000
+#nbrOfPoints_ttbar_DL = 10
+nbrOfPoints_ttZ_Zll = 5000
+#nbrOfPoints_ttZ_Zll = 5
 
 
-#nbrOfPoints_ttH_miss = 20000
-nbrOfPoints_ttH_miss = 20
-#nbrOfPoints_ttZ_miss = 20000
-nbrOfPoints_ttZ_miss = 20
-#nbrOfPoints_ttZ_Zll_SL_miss = 10000
-nbrOfPoints_ttZ_Zll_miss = 10
+nbrOfPoints_ttH_miss = 20000
+#nbrOfPoints_ttH_miss = 20
+nbrOfPoints_ttZ_miss = 20000
+#nbrOfPoints_ttZ_miss = 20
+nbrOfPoints_ttZ_Zll_SL_miss = 10000
+#nbrOfPoints_ttZ_Zll_miss = 10
 
 nbrOfPermut_per_jet = 4
 
