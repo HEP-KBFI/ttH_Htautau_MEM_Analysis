@@ -212,32 +212,44 @@ bool EventReader<PyRun2EventData_t>::readEvent(PyRun2EventData_t &eventData,
     Jet_4P.SetPxPyPzE( (_recoPFJet_untag_px)[i], (_recoPFJet_untag_py)[i], (_recoPFJet_untag_pz)[i], (_recoPFJet_untag_e)[i] );
     Jets_4P.push_back(Jet_4P);
   }
-  
-  Jet1_4P = Jets_4P[0];
-  Jet2_4P = Jets_4P[1];
-  double mW = 80.4;
-  double delta_Mjj = fabs( (Jet1_4P+Jet2_4P).M() - mW );
 
-  for(unsigned int i=0;i<Jets_4P.size()-1;i++){
-    for(unsigned int j=i+1;j<Jets_4P.size();j++){
-      
-      if( fabs( (Jets_4P[i]+Jets_4P[j]).M() - mW ) < delta_Mjj ){
-	Jet1_4P = Jets_4P[i];
-	Jet2_4P = Jets_4P[j];
-	delta_Mjj = fabs( (Jet1_4P+Jet2_4P).M() - mW );
-      }
-  
-    }
-  }
 
-  if( (Jet1_4P+Jet2_4P).M()>60 && (Jet1_4P+Jet2_4P).M()<100 )
-    integration_type = 0;
-
-  else{
+  if( Jets_4P.size()==1 ){
     integration_type = 1;
     Jet1_4P.SetPxPyPzE( 0., 0., 0., 0. );
     Jet2_4P.SetPxPyPzE( 0., 0., 0., 0. );    
-  }  
+  }
+
+
+  else{
+  
+    Jet1_4P = Jets_4P[0];
+    Jet2_4P = Jets_4P[1];
+    double mW = 80.4;
+    double delta_Mjj = fabs( (Jet1_4P+Jet2_4P).M() - mW );
+    
+    for(unsigned int i=0;i<Jets_4P.size()-1;i++){
+      for(unsigned int j=i+1;j<Jets_4P.size();j++){
+	
+	if( fabs( (Jets_4P[i]+Jets_4P[j]).M() - mW ) < delta_Mjj ){
+	  Jet1_4P = Jets_4P[i];
+	  Jet2_4P = Jets_4P[j];
+	  delta_Mjj = fabs( (Jet1_4P+Jet2_4P).M() - mW );
+	}
+	
+      }
+    }
+    
+    if( (Jet1_4P+Jet2_4P).M()>60 && (Jet1_4P+Jet2_4P).M()<100 )
+      integration_type = 0;
+    
+    else{
+      integration_type = 1;
+      Jet1_4P.SetPxPyPzE( 0., 0., 0., 0. );
+      Jet2_4P.SetPxPyPzE( 0., 0., 0., 0. );    
+    }  
+
+  }
 
   cout<<"Event #"<<currentEvent_<<" selected"<<endl;
 
