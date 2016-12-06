@@ -207,6 +207,7 @@ typedef struct MGIntegration_s {
   int64_t  totalDrawsttH_[nbrOfPermutMax];
   double compTimettH_[nbrOfPermutMax];
   double weight_ttH_;
+  double weight_error_ttH_;
   //
   double integralttZ_[nbrOfPermutMax];
   double stderrttZ_[nbrOfPermutMax];
@@ -215,6 +216,7 @@ typedef struct MGIntegration_s {
   int64_t  totalDrawsttZ_[nbrOfPermutMax];
   double compTimettZ_[nbrOfPermutMax];
   double weight_ttZ_;
+  double weight_error_ttZ_;
   //
   double integralttZ_Zll_[nbrOfPermutMax];
   double stderrttZ_Zll_[nbrOfPermutMax];
@@ -223,6 +225,7 @@ typedef struct MGIntegration_s {
   int64_t  totalDrawsttZ_Zll_[nbrOfPermutMax];
   double compTimettZ_Zll_[nbrOfPermutMax];
   double weight_ttZ_Zll_;
+  double weight_error_ttZ_Zll_;
   //
   double integralttbar_DL_fakelep_tlep_[nbrOfPermutMax];
   double stderrttbar_DL_fakelep_tlep_[nbrOfPermutMax];
@@ -238,6 +241,7 @@ typedef struct MGIntegration_s {
   int64_t  totalDrawsttbar_DL_fakelep_ttau_[nbrOfPermutMax];
   double compTimettbar_DL_fakelep_ttau_[nbrOfPermutMax];
   double weight_ttbar_DL_fakelep_;
+  double weight_error_ttbar_DL_fakelep_;
   
   //Efficiency filled during the integration
   int64_t integr_EfficiencyttH_;

@@ -105,6 +105,11 @@ void ThreadScheduler::runNodeScheduler (
     evList[k].weight_ttZ_ = 0; 
     evList[k].weight_ttZ_Zll_ = 0; 
     evList[k].weight_ttbar_DL_fakelep_ = 0; 
+
+    double var_ttH = 0;
+    double var_ttZ = 0;
+    double var_ttZ_Zll = 0;
+    double var_ttbar_DL_fakelep = 0;    
     
 
     //
@@ -152,6 +157,7 @@ void ThreadScheduler::runNodeScheduler (
 	  evList[k].totalDrawsttbar_DL_fakelep_tlep_[perm] = integration->tot_Drawsttbar_DL_fakelep_tlep_;
 	  evList[k].integrationEfficiencyttbar_DL_fakelep_tlep_[perm] = integration->integr_Efficiencyttbar_DL_fakelep_tlep_;
 	  evList[k].weight_ttbar_DL_fakelep_ += evList[k].integralttbar_DL_fakelep_tlep_[perm];
+	  var_ttbar_DL_fakelep +=  pow(evList[k].stderrttbar_DL_fakelep_tlep_[perm],2);
 
 	  
 	}
@@ -190,6 +196,7 @@ void ThreadScheduler::runNodeScheduler (
 	  evList[k].totalDrawsttbar_DL_fakelep_ttau_[perm] = integration->tot_Drawsttbar_DL_fakelep_ttau_;
 	  evList[k].integrationEfficiencyttbar_DL_fakelep_ttau_[perm] = integration->integr_Efficiencyttbar_DL_fakelep_ttau_;
 	  evList[k].weight_ttbar_DL_fakelep_ += evList[k].integralttbar_DL_fakelep_ttau_[perm];
+	  var_ttbar_DL_fakelep +=  pow(evList[k].stderrttbar_DL_fakelep_tlep_[perm],2);
 	  
 	}
 	
@@ -248,6 +255,7 @@ void ThreadScheduler::runNodeScheduler (
 	  evList[k].totalDrawsttH_[perm] = integration->tot_DrawsttH_;
 	  evList[k].integrationEfficiencyttH_[perm] = integration->integr_EfficiencyttH_;
 	  evList[k].weight_ttH_ += evList[k].integralttH_[perm];
+	  var_ttH += pow(evList[k].stderrttH_[perm],2);
 
 	}
 	
@@ -293,6 +301,7 @@ void ThreadScheduler::runNodeScheduler (
 	    evList[k].integrationEfficiencyttZ_[perm] = integration->integr_EfficiencyttZ_;
 	    evList[k].totalDrawsttZ_[perm] = integration->tot_DrawsttZ_;
 	    evList[k].weight_ttZ_ += evList[k].integralttZ_[perm];
+	    var_ttZ += pow(evList[k].stderrttZ_[perm],2);
 
 	  }
 	
@@ -335,7 +344,8 @@ void ThreadScheduler::runNodeScheduler (
 	    evList[k].totalDrawsttZ_Zll_[perm] = integration->tot_DrawsttZ_Zll_;
 	    evList[k].integrationEfficiencyttZ_Zll_[perm] = integration->integr_EfficiencyttZ_Zll_;
 	    evList[k].weight_ttZ_Zll_ += evList[k].integralttZ_Zll_[perm];
-	    
+	    var_ttZ_Zll += pow(evList[k].stderrttZ_Zll_[perm],2);
+
 	  }
 	  
 	}	
@@ -400,7 +410,8 @@ void ThreadScheduler::runNodeScheduler (
 	  evList[k].totalDrawsttH_[perm] = integration->tot_DrawsttH_;
 	  evList[k].integrationEfficiencyttH_[perm] = integration->integr_EfficiencyttH_;
 	  evList[k].weight_ttH_ += evList[k].integralttH_[perm]; 
-	  
+	  var_ttH += pow(evList[k].stderrttH_[perm],2);
+
 	}
 
 
@@ -450,7 +461,8 @@ void ThreadScheduler::runNodeScheduler (
 	    evList[k].totalDrawsttZ_[perm] = integration->tot_DrawsttZ_;
 	    evList[k].integrationEfficiencyttZ_[perm] = integration->integr_EfficiencyttZ_;
 	    evList[k].weight_ttZ_ += evList[k].integralttZ_[perm];
-	    
+	    var_ttZ += pow(evList[k].stderrttZ_[perm],2);
+
 	  }
 	  
 	}
@@ -498,7 +510,8 @@ void ThreadScheduler::runNodeScheduler (
 	    evList[k].totalDrawsttZ_Zll_[perm] = integration->tot_DrawsttZ_Zll_;
 	    evList[k].integrationEfficiencyttZ_Zll_[perm] = integration->integr_EfficiencyttZ_Zll_;
 	    evList[k].weight_ttZ_Zll_ += evList[k].integralttZ_Zll_[perm];
-	    
+	    var_ttZ_Zll += pow(evList[k].stderrttZ_Zll_[perm],2);
+
 	  }
 	  
 	}
@@ -508,6 +521,10 @@ void ThreadScheduler::runNodeScheduler (
     
     }
 
+    evList[k].weight_error_ttH_ = sqrt(var_ttH);
+    evList[k].weight_error_ttZ_ = sqrt(var_ttZ);
+    evList[k].weight_error_ttZ_Zll_ = sqrt(var_ttZ_Zll);
+    evList[k].weight_error_ttbar_DL_fakelep_ = sqrt(var_ttbar_DL_fakelep);
 
   }
 
