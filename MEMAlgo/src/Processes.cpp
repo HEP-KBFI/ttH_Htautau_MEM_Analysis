@@ -159,18 +159,6 @@ double get_ttHWeightedME( double x0, double x1, const vector<double*> &p) {
   double fcbar0 = LHAPDF::xfx( PDFSet, x0, pdfQ_, -4 );
   double fsbar0 = LHAPDF::xfx( PDFSet, x0, pdfQ_, -3 );
 
-  /*cout<<endl;
-  cout<<"x0="<<x0<<" pdfQ_="<<pdfQ_<<endl;
-  cout<<"fg0="<<fg0<<endl;
-  cout<<"fu0="<<fu0<<endl;
-  cout<<"fd0="<<fd0<<endl;
-  cout<<"fc0="<<fc0<<endl;
-  cout<<"fs0="<<fs0<<endl;
-  cout<<"fubar0="<<fubar0<<endl;
-  cout<<"fdbar0="<<fdbar0<<endl;
-  cout<<"fcbar0="<<fcbar0<<endl;
-  cout<<"fsbar0="<<fsbar0<<endl;*/
-
   double fg1    = LHAPDF::xfx( PDFSet, x1, pdfQ_,  0 );
   double fu1    = LHAPDF::xfx( PDFSet, x1, pdfQ_,  2 );
   double fd1    = LHAPDF::xfx( PDFSet, x1, pdfQ_,  1 );
@@ -186,13 +174,18 @@ double get_ttHWeightedME( double x0, double x1, const vector<double*> &p) {
   pdf_sum     = fg0*fg1;
   ME2        += pdf_sum * current_ME2;
 
-  //qqbar->ttH
-  current_ME2 = getME_ttH_qqbar( p0 );
+  //qqbar->ttH: 2 perms give same ME
+  /*current_ME2 = getME_ttH_qqbar( p0 );
   pdf_sum     = fu0*fubar1+fd0*fdbar1+fc0*fcbar1+fs0*fsbar1;
   ME2        += pdf_sum * current_ME2;
   //
   current_ME2 = getME_ttH_qqbar( p1 );
   pdf_sum     = fu1*fubar0+fd1*fdbar0+fc1*fcbar0+fs1*fsbar0;
+  ME2        += pdf_sum * current_ME2;*/
+
+  current_ME2 = getME_ttH_qqbar( p0 );
+  pdf_sum     = fu0*fubar1+fd0*fdbar1+fc0*fcbar1+fs0*fsbar1;
+  pdf_sum    += fu1*fubar0+fd1*fdbar0+fc1*fcbar0+fs1*fsbar0;
   ME2        += pdf_sum * current_ME2;
 
   return ME2 / (x0 * x1);
@@ -361,13 +354,18 @@ double get_ttbarWeightedME( double x0, double x1, const vector<double*> &p) {
   ME2        += pdf_sum * current_ME2;
 
 
-  //qqbar->ttbar
-  current_ME2 = getME_qqbar_ttbar( p0 );
+  //qqbar->ttbar: 2 perms give same ME
+  /*current_ME2 = getME_qqbar_ttbar( p0 );
   pdf_sum     = fu0*fubar1+fd0*fdbar1+fc0*fcbar1+fs0*fsbar1;
   ME2        += pdf_sum * current_ME2;
   //
   current_ME2 = getME_qqbar_ttbar( p1 );
   pdf_sum     = fu1*fubar0+fd1*fdbar0+fc1*fcbar0+fs1*fsbar0;
+  ME2        += pdf_sum * current_ME2;*/
+
+  current_ME2 = getME_qqbar_ttbar( p0 );
+  pdf_sum     = fu0*fubar1+fd0*fdbar1+fc0*fcbar1+fs0*fsbar1;
+  pdf_sum    += fu1*fubar0+fd1*fdbar0+fc1*fcbar0+fs1*fsbar0;
   ME2        += pdf_sum * current_ME2;
  
   return ME2 / (x0 * x1);
