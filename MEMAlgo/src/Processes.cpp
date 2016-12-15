@@ -25,8 +25,8 @@ static CPPProcess_ttH_qqbar process_ttH_qqbar;
 static CPPProcess_ttZ_Zonly_gg process_ttZ_Zonly_gg;
 static CPPProcess_ttZ_Zonly_uubar process_ttZ_Zonly_uubar;
 
-static CPPProcess_ttZ_Zonly_gg process_ttZ_Zonly_Zll_gg;
-static CPPProcess_ttZ_Zonly_uubar process_ttZ_Zonly_Zll_uubar;
+static CPPProcess_ttZ_Zonly_Zll_gg process_ttZ_Zonly_Zll_gg;
+static CPPProcess_ttZ_Zonly_Zll_uubar process_ttZ_Zonly_Zll_uubar;
 
 // Main ttbar processes
 static CPPProcess_gg_to_ttbar process_gg_ttbar;
