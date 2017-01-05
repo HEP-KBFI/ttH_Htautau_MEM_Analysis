@@ -104,7 +104,7 @@ nbrOfPoints_ttH_miss = 4000
 #nbrOfPoints_ttH_miss = 20
 nbrOfPoints_ttZ_miss = 4000
 #nbrOfPoints_ttZ_miss = 20
-nbrOfPoints_ttZ_Zll_SL_miss = 1000
+nbrOfPoints_ttZ_Zll_miss = 1000
 #nbrOfPoints_ttZ_Zll_miss = 10
 
 nbrOfPermut_per_jet = 4
