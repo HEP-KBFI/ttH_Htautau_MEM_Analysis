@@ -84,6 +84,21 @@ void ThreadScheduler::initNodeScheduler( const RunConfig *cfg,
   // MadGraph
   init_ttH_HTauTauMEProcesses( cfg->configFileName.c_str() ); 
 
+
+  cout<<endl;
+  cout<<endl;
+  cout<<"Nbr of integration calls:"<<endl;
+  cout<<"- ttH no missing jet: "<<integration->nbrOfPoints_ttH_<<endl;
+  cout<<"- ttZ no missing jet: "<<integration->nbrOfPoints_ttZ_<<endl;
+  cout<<"- ttZ Zll no missing jet: "<<integration->nbrOfPoints_ttZ_Zll_<<endl;
+  cout<<"- ttbar DL fakelep: "<<integration->nbrOfPoints_ttbar_DL_<<endl;
+  cout<<"- ttH missing jet: "<<integration->nbrOfPoints_ttH_miss_<<endl;
+  cout<<"- ttZ missing jet: "<<integration->nbrOfPoints_ttZ_miss_<<endl;
+  cout<<"- ttZ Zll missing jet: "<<integration->nbrOfPoints_ttZ_Zll_miss_<<endl;
+  cout<<endl;
+  cout<<endl;
+  
+
 }
 
 
