@@ -63,7 +63,7 @@ class NodeScheduler {
                     delay.tv_sec = 50L; // tv_nsec 
                   };
                   
-  ~NodeScheduler() {};
+  virtual ~NodeScheduler() {};
 
   virtual void initNodeScheduler( const RunConfig *config, int mpi_rank );
 
