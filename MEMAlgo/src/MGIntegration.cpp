@@ -2060,7 +2060,7 @@ double MGIntegration::evalttH(const double* x ) {
     double Eb_lep=getEb(W_lep_4P, evBJet_leptop_4P_);
     double b_lep_Pmag=TMath::Sqrt(Eb_lep*Eb_lep - mb*mb);
     double pT_bl=b_lep_Pmag/TMath::CosH(evBJet_leptop_4P_.Eta());
-    if(Eb_lep>0){
+    if(Eb_lep>0 && pT_bl>0){
       b_lep_reco_4P.SetPtEtaPhiE(pT_bl,evBJet_leptop_4P_.Eta(),evBJet_leptop_4P_.Phi(),Eb_lep);
       t_lep_4P=W_lep_4P+b_lep_reco_4P;
     }
