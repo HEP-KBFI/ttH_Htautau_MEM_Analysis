@@ -9,6 +9,8 @@
 #define	PYCONFIG_H
 
 #include <boost/python.hpp>
+#include <vector>
+
 
 PyObject* readPyConfig     ( const char* filename );
 void      debugPyConfigFile( PyObject* pModule );
